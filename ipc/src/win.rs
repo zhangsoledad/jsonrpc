@@ -287,7 +287,7 @@ impl<M: Metadata, S: Middleware<M>> Server<M, S> {
 
 impl<M: Metadata, S: Middleware<M>> Drop for Server<M, S> {
 	fn drop(&mut self) {
-		self.stop_async().unwrap_or_else(|_| {}); // ignore error - can be stopped already
+		self.stop().unwrap_or_else(|_| {}); // ignore error - can be stopped already
 		// todo : no stable logging for windows?
 		trace!(target: "ipc", "IPC Server : shutdown");
 	}
